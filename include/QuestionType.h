@@ -1,0 +1,13 @@
+#ifndef QUESTIONTYPE_H
+#define QUESTIONTYPE_H
+
+typedef enum {
+	GEOGRAPHY,
+	ENTERTAINMENT,
+	HISTORY,
+	LITERATURE,
+	SCIENCE_NATURE,
+	SPORTS
+} QuestionType;
+
+#endif
