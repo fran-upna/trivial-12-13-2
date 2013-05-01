@@ -5,7 +5,7 @@ CFLAGS = -Wall -c ${DEBUG} -Iinclude
 LFLAGS = -Wall ${DEBUG} -Iinclude
 
 all: folders Questions.o
-	${CC} ${LFLAGS} src/trivial.c -o bin/trivial lib/Questions.o
+	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o
 
 clean:
 	rm -f lib/*.o
