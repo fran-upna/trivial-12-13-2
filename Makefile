@@ -28,3 +28,6 @@ folders:
 
 socketServer.o:
 	${CC} ${CFLAGS} src/socketServer.c -o lib/socketServer.o
+	
+dice:
+	${CC} ${CFLAGS} src/dice.c -o lib/dice.o
