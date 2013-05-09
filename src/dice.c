@@ -3,9 +3,6 @@
 #include <time.h>
 #include <string.h>
 
-int tirarDado(FILE *sock);
-void categoria(int x, char cat[]);
-
 void categoria(int x, char cat[]) {
 	switch(x) {
 		case 1: strcpy(cat, "GEOGRAPHY");
