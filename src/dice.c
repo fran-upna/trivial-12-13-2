@@ -44,8 +44,9 @@ void tirarDado(FILE *sock) {
 	categoria(x, cat1);
 	categoria(y, cat2);
 	
+	char buf_info[strlen(cat1)+strlen(cat2)+sizeof(int)];
+
 	// Enviamos al socket las categorías
-	char buf_info[50];
 	sprintf(buf_info,"%s %s %d\n", cat1, cat2, d);
 	//fprintf(fsock,"%s",buf_info);
 	printf("Se han enviado al jugador las categorías %s y %s.\n",cat1, cat2);
