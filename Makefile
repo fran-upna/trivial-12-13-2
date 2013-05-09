@@ -13,7 +13,7 @@ clean:
 	rm -f data/questions.db
 
 server:
-	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o
+	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/socketServer.o
 
 client:
 	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o
