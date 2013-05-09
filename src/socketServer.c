@@ -10,7 +10,23 @@
 ///////////////////////////////
 //Implementacion de funciones//
 ///////////////////////////////
-
+//Aceptar conexion en servidor
+int esperaConexiones(int sock){
+     
+    struct sockaddr_in cliente;
+    unsigned int dirlen,cone=0;
+	  
+    dirlen=sizeof(cliente);
+    cone = accept (sock, (struct sockaddr *)&cliente,&dirlen); 
+    
+    if (sock == -1){ 
+	printf ("Erro aceptando conexionr\n"); 
+	exit(-2);
+    }
+    printf("Conexion establecida desde la IP %x con el puerto %d.\n----------------------------------------------\n",ntohl(cliente.sin_addr.s_addr),ntohs(cliente.sin_port));
+  
+    return cone;
+}
 ////Preparar conexión servidor.
 int prepararServidor(char p[],char m[]){
     
@@ -40,24 +56,8 @@ int prepararServidor(char p[],char m[]){
 	    exit(-2);
     }
 
-    return sock;
+    return esperaConexiones(sock);
 }
 
-//Aceptar conexion en servidor
-int esperaConexiones(int sock){
-     
-    struct sockaddr_in cliente;
-    unsigned int dirlen,cone=0;
-	  
-    dirlen=sizeof(cliente);
-    cone = accept (sock, (struct sockaddr *)&cliente,&dirlen); 
-    
-    if (sock == -1){ 
-	printf ("Erro aceptando conexionr\n"); 
-	exit(-2);
-    }
-    printf("Conexion establecida desde la IP %x con el puerto %d.\n----------------------------------------------\n",ntohl(cliente.sin_addr.s_addr),ntohs(cliente.sin_port));
-  
-    return cone;
-}
+
 
