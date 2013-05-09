@@ -25,3 +25,6 @@ folders:
 	if [ ! -e lib ]; then mkdir lib; fi
 	if [ ! -e bin ]; then mkdir bin; fi
 	if [ ! -e data ]; then mkdir data; fi
+
+socketServer.o:
+	${CC} ${CFLAGS} src/socketServer.c -o lib/socketServer.o
