@@ -6,7 +6,6 @@
 void envio_cat(char category1[], char category2[], int result);
 int tirarDado(FILE *sock, char cat1[], char cat2[]);
 void categoria(int x, char cat[]);
-//void categoria2(int x, char cat2[]);
 
 int main (int argc, char* argv[]) {
 
@@ -27,7 +26,6 @@ void envio_cat(char category1[], char category2[], int result){
 	sprintf(buf_info,"%s %s %d\n", category1, category2, result);
 	//fprintf(fsock,"%s",buf_info);
 	printf("Se han enviado al jugador las categorías %s y %s.\n",category1, category2);
-	//bzero(buf_info);
 	
 	// Uso el socket para enviar toda la información
 }
