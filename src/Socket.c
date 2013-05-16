@@ -11,7 +11,7 @@
 //Implementacion de funciones//
 ///////////////////////////////
 //Aceptar conexion en servidor
-int esperaConexiones(int sock){
+int Socket_esperaConexiones(int sock){
      
     struct sockaddr_in cliente;
     unsigned int dirlen,cone=0;
@@ -28,7 +28,7 @@ int esperaConexiones(int sock){
     return cone;
 }
 ////Preparar conexión servidor.
-int prepararServidor(char p[],char m[]){
+int Socket_prepararServidor(char p[],char m[]){
     
     int sock,puerto,max;
     struct sockaddr_in servidor;
@@ -56,7 +56,7 @@ int prepararServidor(char p[],char m[]){
 	    exit(-2);
     }
 
-    return esperaConexiones(sock);
+    return Socket_esperaConexiones(sock);
 }
 
 
