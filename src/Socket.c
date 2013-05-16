@@ -59,5 +59,37 @@ int Socket_prepararServidor(char p[],char m[]){
     return Socket_esperaConexiones(sock);
 }
 
-
+int Socket_prepararCliente(char port[],char ip[])
+{
+  int sock,puerto,dir_ip,conexion;
+  struct in_addr addr;
+  struct sockaddr_in DatoServidor;
+  
+  puerto = atoi(port);//hacemos un cast a puesto para pasarlo a entero.
+  dir_ip = atoi(ip);//hacemos un cast a ip para pasarlo a entero
+  
+  /* Abrimos el socket */
+  sock=socket(PF_INET,SOCK_STREAM,0);
+  if (sock==-1) {
+    printf("Error no puedo abrir el socket\n");
+    exit(-1);
+  }  
+  /* Rellenamos la estructura con los datos del servidor */
+  /////////////////////////////////////////////////
+  DatoServidor.sin_family=AF_INET;
+  DatoServidor.sin_port=htons(puerto);
+  DatoServidor.sin_addr.s_addr=(dir_ip);
+  /////////////////////////////////////////////////
+  /*Conexion con el servidor*/
+  conexion=connect(sock,(struct sockaddr *)&DatoServidor,sizeof(DatoServidor));
+  if (conexion==-1) 
+  {
+    printf("Error no puedo establecer la conexion con el servidor\n");
+    exit(-1);
+  }
+  else{
+    printf("Conexion establecida correctamente.\n");
+    return sock;
+  }  
+}
 
