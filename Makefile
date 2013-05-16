@@ -30,4 +30,4 @@ Socket.o:
 	${CC} ${CFLAGS} src/Socket.c -o lib/Socket.o
 
 dice:
-	${CC} ${CFLAGS} src/dice.c -o lib/dice.o
+	${CC} ${CFLAGS} include/dice.h -o lib/dice.o
