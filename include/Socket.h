@@ -3,7 +3,7 @@
 /////////////////////////////////////////
 
 ////Preparar conexión servidor.
-int prepararServidor(char p[],char m[]);
+int Socket_prepararServidor(char p[],char m[]);
 
 
 

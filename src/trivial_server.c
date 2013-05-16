@@ -4,7 +4,7 @@
 
 #include <Questions.h>
 #include <Connector.h>
-#include <socketServer.h>
+#include <Socket.h>
 
 Questions *questions;
 Connector connector;
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 	Questions_free(questions);
 	
 	//Inicializamos el socket conexion en modo servidor
-	conexion=prepararServidor(argv[1], argv[2]);
+	conexion=Socket_prepararServidor(argv[1], argv[2]);
 
 	return 0;
 }

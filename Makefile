@@ -12,10 +12,10 @@ clean:
 	rm -f bin/trivial
 	rm -f data/questions.db
 
-server:
-	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/socketServer.o
+server: Questions.o Socket.o
+	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o
 
-client:
+client: Questions.o
 	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o
 
 Questions.o:
@@ -26,8 +26,8 @@ folders:
 	if [ ! -e bin ]; then mkdir bin; fi
 	if [ ! -e data ]; then mkdir data; fi
 
-socketServer.o:
-	${CC} ${CFLAGS} src/socketServer.c -o lib/socketServer.o
-	
+Socket.o:
+	${CC} ${CFLAGS} src/Socket.c -o lib/Socket.o
+
 dice:
 	${CC} ${CFLAGS} src/dice.c -o lib/dice.o
