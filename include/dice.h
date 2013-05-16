@@ -3,11 +3,10 @@
 #include <time.h>
 #include <string.h>
 
-// Librería para usar sockets
-//#include <socket.o>
+// Librería para usar el socket
+#include <Socket.h>
 
 void categoria(int x, char cat[]) {
-	// TODO: Obtener las categorías desde la base de datos de las mismas
 	switch(x) {
 		case 1: strcpy(cat, "GEOGRAPHY");
 				break;
@@ -53,7 +52,7 @@ void tirarDado(FILE *sock) {
 
 	// Enviamos al socket las categorías
 	sprintf(buf_info,"%s %s %d\n", cat1, cat2, d);
-	//socket_escribir();
+	socket_escribir(sock, buf_info);
 	printf("Se han enviado al jugador las categorías %s y %s.\n",cat1, cat2);
 	
 }
@@ -69,12 +68,17 @@ void recibirCategoria(char cat1[], char cat2[]){
 	int res_dado;
 	
 	// Leemos del socket las categorías y el resultado del dado
-	//socket_leer();
+	buf_leido = socket_leer(sock);
 	
 	// Separamos el resultado en dos buffers y un entero
 	sscanf(buf_leido,"%s %s %d",cat1,cat2,&res_dado);
 	
 	// Mostramos el resultado del dado
 	printf("Has sacado un %d en la tirada.\n",res_dado);
+	
+	// Mostramos las categorías
+	printf("Las categorías a elegir son: \n"); 
+	printf("     a) %s \n",cat1);
+	printf("     b) %s \n",cat2);
 	
 }
