@@ -4,7 +4,7 @@ DEBUG = -g
 CFLAGS = -Wall -c ${DEBUG} -Iinclude
 LFLAGS = -Wall ${DEBUG} -Iinclude
 
-all: folders Questions.o client server
+all: client server
 
 clean:
 	rm -f lib/*.o
@@ -12,10 +12,10 @@ clean:
 	rm -f bin/trivial
 	rm -f data/questions.db
 
-server: Questions.o Socket.o
+server: folders Questions.o Socket.o
 	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o
 
-client: Questions.o
+client: folders Questions.o
 	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o
 
 Questions.o:
