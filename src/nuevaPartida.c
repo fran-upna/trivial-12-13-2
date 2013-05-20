@@ -25,13 +25,13 @@ void nuevaPartidaServer(int socket){
 	// Buscar user segun socket
 	
 	peticion = socket_leer(/*socket*/);
-	if (strstr(peticion,"C NEW GAME")!=NULL){
+	if (strstr(peticion,"C NEW GAME\n")!=NULL){
 		if (comprobarOcupado(user)==0){
 			crearPartida(user);
 			registrarUsuarioNoDisponible(user);
-			socket_escribir(/*socket,*/"S OK NEW GAME");
+			socket_escribir(/*socket,*/"S OK NEW GAME\n");
 		} else {
-			socket_escribir(/*socket,*/"S ERR NEW GAME");
+			socket_escribir(/*socket,*/"S ERR NEW GAME\n");
 		}
 	} else {
 		socket_escribir(/*socket,*/"ERROR EN PROTOCOLO");
