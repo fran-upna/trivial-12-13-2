@@ -31,3 +31,5 @@ Socket.o:
 
 dice:
 	${CC} ${CFLAGS} include/dice.h -o lib/dice.o
+tiempo_pregunta:
+	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
