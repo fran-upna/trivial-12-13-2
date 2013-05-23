@@ -59,14 +59,15 @@ int Socket_prepararServidor(char p[],char m[]){
     return Socket_esperaConexiones(sock);
 }
 
-int Socket_prepararCliente(char port[],char ip[])
+int Socket_prepararCliente(char ip[],char port[])
 {
-  int sock,puerto,dir_ip,conexion;
+  int sock,puerto,conexion;
+  struct in_addr dir_ip;
   struct in_addr addr;
   struct sockaddr_in DatoServidor;
   
   puerto = atoi(port);//hacemos un cast a puesto para pasarlo a entero.
-  dir_ip = atoi(ip);//hacemos un cast a ip para pasarlo a entero
+  //dir_ip = atoi(ip);//hacemos un cast a ip para pasarlo a entero
   
   /* Abrimos el socket */
   sock=socket(PF_INET,SOCK_STREAM,0);
@@ -78,7 +79,12 @@ int Socket_prepararCliente(char port[],char ip[])
   /////////////////////////////////////////////////
   DatoServidor.sin_family=AF_INET;
   DatoServidor.sin_port=htons(puerto);
-  DatoServidor.sin_addr.s_addr=(dir_ip);
+  if (inet_aton(ip, &dir_ip) == 0) 
+  {
+    perror("inet_aton");
+    exit(EXIT_FAILURE);
+  } 
+  DatoServidor.sin_addr=(dir_ip);
   /////////////////////////////////////////////////
   /*Conexion con el servidor*/
   conexion=connect(sock,(struct sockaddr *)&DatoServidor,sizeof(DatoServidor));
