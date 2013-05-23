@@ -13,12 +13,12 @@ void iniciarContador(FILE* sock) {
 	pid_t pid_contador = fork();
 	if(pid_contador == 0) {
 		int seg = 0, ok = 0;
-		char buf[30];
-		bzero(buf, 30);
+		char buf[5];
+		bzero(buf, 5);
 		
 		while(seg < 10 && ok == 0) {
-			fgets(buf, 30, sock);
-			if(strcmp(buf, "P_OK") == 0) {
+			fgets(buf, 5, sock);
+			if(strncmp(buf, "P_OK",4) == 0) {
 				ok = 1;
 			}
 			sleep(1);
@@ -32,3 +32,9 @@ void iniciarContador(FILE* sock) {
 		}
 	}
 }
+
+// Parte correspondiente al servidor (para añadir a la función del grupo 1)
+/*char buf[] = socket_leer(sock);
+if (strncmp(buf,"P_FAIL\n",6)==0){
+	// Hacer lo mismo que se haría cuando la pregunta es incorrecta
+}*/
