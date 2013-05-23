@@ -99,3 +99,34 @@ int Socket_prepararCliente(char ip[],char port[])
   }  
 }
 
+void Socket_escribit(int sock,char msj[]){
+    write(sock,msj,strlen(msj));
+    return;
+}
+
+// Grupo 5
+// Entrada: socket y buffer donde está la información a escribir.
+// Salida: devuelve 0 si se escribe correctamente.
+//		   devuelve -1 si no se escribe correctamente.
+int Socket_escribir(FILE* sock, char buf[]) {
+	if(fprintf(sock, "%s\n", buf) < 0) {
+		return 0;
+	}
+	else {
+		printf("Error al escribir en socket\n");
+		return -1;
+	}
+}
+
+// REQUISITO: Todos los mensajes deben acabar en \n
+char* Socket_leer(int sock){
+    char buf[TAM_BUFF];
+>>>>>>> f1ed55aa822e0e5530cc0e57f68834f165db47b1
+
+    f=fdopen(sock,"r");
+    setbuf(f,NULL);
+    strcpy(buf,"");
+    fgets(buf,TAM_BUFF,f);
+
+    return buf;
+}
