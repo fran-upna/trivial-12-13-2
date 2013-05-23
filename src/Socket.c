@@ -77,3 +77,15 @@ int Socket_escribir(FILE* sock, char buf[]) {
 		return -1;
 	}
 }
+
+// REQUISITO: Todos los mensajes deben acabar en \n
+char* Socket_leer(int sock){
+    char buf[TAM_BUFF];
+
+    f=fdopen(sock,"r");
+    setbuf(f,NULL);
+    strcpy(buf,"");
+    fgets(buf,TAM_BUFF,f);
+
+    return buf;
+}
