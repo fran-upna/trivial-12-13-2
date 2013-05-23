@@ -64,4 +64,16 @@ void Socket_escribit(int sock,char msj[]){
     return;
 }
 
-
+// Grupo 5
+// Entrada: socket y buffer donde está la información a escribir.
+// Salida: devuelve 0 si se escribe correctamente.
+//		   devuelve -1 si no se escribe correctamente.
+int Socket_escribir(FILE* sock, char buf[]) {
+	if(fprintf(sock, "%s\n", buf) < 0) {
+		return 0;
+	}
+	else {
+		printf("Error al escribir en socket\n");
+		return -1;
+	}
+}
