@@ -59,5 +59,9 @@ int Socket_prepararServidor(char p[],char m[]){
     return Socket_esperaConexiones(sock);
 }
 
+void Socket_escribit(int sock,char msj[]){
+    write(sock,msj,strlen(msj));
+    return;
+}
 
 
