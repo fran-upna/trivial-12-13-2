@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "Socket.h"
-#include <registro.h>
+#include <Registro.h>
 
 int main(int argc, char *argv[]) {
   int sock;
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
   }
   sock = Socket_prepararCliente(argv[1],argv[2]);
 
-  printf("Bienvenido a nuestro TRIVIAL\n¿Que deseas hacer?\n 1.-Autentificarte\n 2.-Registrarte\n 3.-Salir\n);
+  printf("Bienvenido a nuestro TRIVIAL\n¿Que deseas hacer?\n 1.-Autentificarte\n 2.-Registrarte\n 3.-Salir\n");
   scanf("%c",opcion);
   if (opcion=='1') {
   }
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     datos=Registro_altacliente(sock);
     Socket_escribir(sock,datos);
     datos=Socket_leer(sock);
-    if (datos[0]=="O"){
+    if (datos[0]=='O'){
       printf("Registro correcto\n");
     }
     else {
@@ -32,4 +32,6 @@ int main(int argc, char *argv[]) {
   else if (opcion=='3'){
     return 0;
   }
+
+  return 0;
 }
