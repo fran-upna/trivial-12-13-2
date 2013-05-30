@@ -6,96 +6,22 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include "Socket.h"
+#include <Socket.h>
 
 
-/**PROGRAMA PRINCIPAL**/
-int main(int argc,char *argv[])
-{
-  /*
-  int size_buf = 30;
-  int npartidas;
-  char *buffer;
-  */
-  //--
-  char *buffer,*mensaje,**resultado;
-  int sock,puerto,dir_ip,conexion;
-    int npartidas;
-  struct Usuario User;
-  int leidos,opcion,i,palabras,opc;
-  char opc2;
-  int size_buf/*tamaño del buffer*/,tmsg/*tamaño de mensaje*/;
-  FILE *f;
-  struct in_addr addr;
-  struct sockaddr_in DatoServidor;
-  if(argc != 3)
-  {
-    printf("Error! Uso: %s <direccion_ip> <puerto>\n",argv[0]);
-    return;
-  }
-  /* Abrimos el socket */
-  sock=socket(PF_INET,SOCK_STREAM,0);
-  if (sock==-1) 
-  {
-    printf("Error no puedo abrir el socket\n");
-    exit(-1);
-  }  
-  /* Rellenamos la estructura con los datos del servidor */
-  DatoServidor.sin_family=AF_INET;
-  puerto=atoi(argv[2]);
-  DatoServidor.sin_port=htons(puerto);
-  if (inet_aton(argv[1], &dir_ip) == 0) 
-  {
-    perror("inet_aton");
-    exit(EXIT_FAILURE);
-  }  
-  DatoServidor.sin_addr.s_addr=(dir_ip);
-    /*Conexion con el servidor*/
-  conexion=connect(sock,(struct sockaddr *)&DatoServidor,sizeof(DatoServidor));
-  if (conexion==-1) 
-  {
-    printf("Error no puedo establecer la conexion con el servidor\n");
-    exit(-1);
-  }
-  printf("Conexion establecida correctamente.\n");
-  
-  
-  
-  
-  
-  //-- previamente implemntada la conexion con el server
-  //--
-  //--Mandamos mensaje para concer las partidas 
-  buffer = (char *)malloc(size_buf*sizeof(char));
-  escribir(sock,"P_DISPONIBLES\n");
-  leer_dispo(sock,buffer);
-  palabras=cuentapalabras(buffer);
-  resultado=(char **)malloc(palabras*sizeof(char *));
-  for(i=0;i<palabras;i++) 
-    resultado[i]=(char *)malloc(20*sizeof(char));
-  dividir(resultado,buffer,palabras); 
-  npartidas = atoi(resultado[1]);
-  printf("Numero de partidas disponibles = %d\n",npartidas);
-  for(i=0;i<npartidas;i++)
-      leer(sock);
-  
-  
-}
-/**FIN PROGRAMA PRINCIPAL**/
-/**************************/
 /**FUNCIONES**/
 
 //s_disponibles X
 //x es el numero de partidas disponibles
 
-void listar_cliente_pdisponibles(int sock;)
+void listar_cliente_pdisponibles(int sock)
 {
   char *buffer, **resultado;
   int size_buf = 30;
-  int npartidas,palabras;
+  int npartidas,palabras,i;
   char *nompartida;
-  buffer = (char *)malloc(size_buf*sizeof(char));
-  Socket_escribir(sock,"P_DISPONIBLES\n");
+  //buffer = (char *)malloc(size_buf*sizeof(char));
+  Socket_escribir(sock,"P_DISPONIBLES");
   //escribir(sock,"P_DISPONIBLES\n");
   buffer = Socket_leer(sock);
   //leer_dispo(sock,buffer);
@@ -113,6 +39,7 @@ void listar_cliente_pdisponibles(int sock;)
      nompartida = Socket_leer(sock);
      printf("%s",nompartida);
   }  
+//   free();
 }
 
 
