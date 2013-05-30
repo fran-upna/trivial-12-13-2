@@ -2,27 +2,9 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
-
 // Librería para usar el socket
 #include <Socket.h>
-
-void categoria(int x, char cat[]) {
-	switch(x) {
-		case 1: strcpy(cat, "GEOGRAPHY");
-				break;
-		case 2: strcpy(cat, "ENTERTAINMENT");
-				break;
-		case 3: strcpy(cat, "HISTORY");
-				break;
-		case 4: strcpy(cat, "LITERATURE");
-				break;
-		case 5: strcpy(cat, "SCIENCE_NATURE");
-				break;
-		case 6: strcpy(cat, "SPORTS");
-				break;
-		default: printf("La tirada no es válida.\n");
-	}
-}
+#include <categorias.h>
 
 void tirarDado(FILE *sock) {
 	int d, x, y;
@@ -44,8 +26,8 @@ void tirarDado(FILE *sock) {
 	}
 	
 	// Envíamos categoría
-	categoria(x, cat1);
-	categoria(y, cat2);
+	categorias(x, cat1);
+	categorias(y, cat2);
 	
 	// Buffer para almacenar lo que se envía por el socket
 	char buf_info[strlen(cat1)+strlen(cat2)+sizeof(int)];
