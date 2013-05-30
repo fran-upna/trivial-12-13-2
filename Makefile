@@ -31,3 +31,7 @@ Socket.o:
 
 dice:
 	${CC} ${CFLAGS} src/dice.c -o lib/dice.o
+
+Registro.o:
+	${CC} ${CFLAGS} src/Registro.c -o lib/Registro.o
+
