@@ -31,3 +31,6 @@ Socket.o:
 
 dice:
 	${CC} ${CFLAGS} src/dice.c -o lib/dice.o
+
+listar_cliente:
+	${CC} ${CFLAGS} src/listar_cliente.c -o lib/listar_cliente.o
