@@ -10,5 +10,7 @@ int Socket_prepararCliente(char port[],char ip[])
 //Escribir mensajes en un socket
 void Socket_escribit(int sock,char msj[]);
 
+char* Socket_leer(int sock);
+
 
 
