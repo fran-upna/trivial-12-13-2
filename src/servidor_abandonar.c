@@ -1,11 +1,13 @@
 partidas_en_juego
+/*Si la variable jugador no es global habria que pasarsela a las funciones*/
 
-struct partidas{
-//if(fgets(f,100,buf)!=NULL){
+
+
+
   if(strncmp(buf,"Abandonar",4)==0){
-    mandar_mensajes_ganar_perder(i);
+    mandar_mensajes_ganar_perder();
     eliminar_usuario();
-    eliminar_partida(partida_actual);
+    eliminar_partida();
     
  /*   socket_escribir(sock,"Lost\n");
     socket_escribir(sock2,"Win\n");//No sabemos si es un socket para ambos o 2 sockets
@@ -33,19 +35,28 @@ fprintf(g,"%s\n",buf);
     socket_escribir(f,"%s\n",jugador1);
     socket_escribir(f,"%s\n",jugador2);
    */ 
-    
-    lees unn str
-    comp
-    si no es meter en aux
-    si es no meterlo
-    llegar fin
-    leer y meter todas en
+
     
 //Eliminar partida
-    eliminar_partida(char* jugador,partidas* partidas_en_juego){
-      
+    eliminar_partida(){
+      int i;
       for(i=0;partidas_en_juego[i]!=NULL;i++){
-      
+	if(strcmp(partidas_en_juego[i].jugador1,jugador)==0){
+	  for(i;partidas_en_juego[i+1]!=NULL;i++){
+	    partidas_en_juego[i]=partidas_en_juego[i+1];
+	  }
+	  partidas_en_juego[i]=NULL;
+	}
+	else if(strcmp(partidas_en_juego[i].jugador2,jugador)==0){
+	  for(i;partidas_en_juego[i+1]!=NULL;i++){
+	    partidas_en_juego[i]=partidas_en_juego[i+1];
+	  }
+	  partidas_en_juego[i]=NULL;
+	}
+      }
+    }
+	  
+
       
       
       
@@ -71,7 +82,7 @@ fprintf(g,"%s\n",buf);
       
       
 //Victoria derrota
-    mandar_mensajes_ganar_perder(int* descriptores,char** identificadores,char* jugador,partidas* partidas_en_juego){
+    mandar_mensajes_ganar_perder(){
       char* jugador2,msj;
       int i,j;
       int len=sizeof(descriptores)/sizeof(int);
@@ -130,7 +141,7 @@ fprintf(g,"%s\n",buf);
       socket_escribir(pos2,"Win\n");
     }*/
     
-    eliminar_usuario(char* jugador,partidas* partidas_en_juego,char** no_disponibles){
+    eliminar_usuario(){
       char* jugador2;
       int i,j;
       for(i=0;partidas_en_juego[i]!=NULL;i++){
@@ -138,7 +149,7 @@ fprintf(g,"%s\n",buf);
 	  jugador2=partidas_en_juego[i].jugador2;
 	  for(j=0;no_disponibles[j]!=NULL;j++){
 	    if(strcmp(no_disponibles[j],jugador)==0){
-	      while(no_disponibles[j+1]!=NULL){
+	      for(j;no_disponibles[j+1]!=NULL;j++){
 		no_disponibles[j]=no_disponibles[j+1];
 	      }
 	      no_disponibles[j]=NULL;
@@ -146,7 +157,7 @@ fprintf(g,"%s\n",buf);
 	  }
 	  for(j=0;no_disponibles[j]!=NULL;j++){
 	    if(strcmp(no_disponibles[j],jugador2)==0){
-	      while(no_disponibles[j+1]!=NULL){
+	      for(j;no_disponibles[j+1]!=NULL;j++){
 		no_disponibles[j]=no_disponibles[j+1];
 	      }
 	      no_disponibles[j]=NULL;
@@ -157,7 +168,7 @@ fprintf(g,"%s\n",buf);
 	  jugador2=partidas_en_juego[i].jugador1;
 	  for(j=0;no_disponibles[j]!=NULL;j++){
 	    if(strcmp(no_disponibles[j],jugador)==0){
-	      while(no_disponibles[j+1]!=NULL){
+	      for(j;no_disponibles[j+1]!=NULL;j++){
 		no_disponibles[j]=no_disponibles[j+1];
 	      }
 	      no_disponibles[j]=NULL;
@@ -165,7 +176,7 @@ fprintf(g,"%s\n",buf);
 	  }
 	  for(j=0;no_disponibles[j]!=NULL;j++){
 	    if(strcmp(no_disponibles[j],jugador2)==0){
-	      while(no_disponibles[j+1]!=NULL){
+	      for(j;no_disponibles[j+1]!=NULL;j++){
 		no_disponibles[j]=no_disponibles[j+1];
 	      }
 	      no_disponibles[j]=NULL;
@@ -242,4 +253,4 @@ fprintf(g,"%s\n",buf);
 	fwrite(&num, sizeof(num), 1, h);
       }
       fclose(h);fclose(g);*/
-    }
+    
