@@ -121,7 +121,6 @@ int Socket_escribir(FILE* sock, char buf[]) {
 // REQUISITO: Todos los mensajes deben acabar en \n
 char* Socket_leer(int sock){
     char buf[TAM_BUFF];
->>>>>>> f1ed55aa822e0e5530cc0e57f68834f165db47b1
 
     f=fdopen(sock,"r");
     setbuf(f,NULL);
