@@ -14,8 +14,8 @@ clean:
 server: folders Questions.o Socket.o
 	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o
 
-client: folders Questions.o
-	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o
+client: folders Questions.o Socket.o
+	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o lib/Socket.o
 
 Questions.o:
 	${CC} ${CFLAGS} src/Questions.c -o lib/Questions.o

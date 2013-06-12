@@ -2,34 +2,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <Registro.h>
-
 #include <Questions.h>
 #include <Connector.h>
+
+#include <Registro.h>
 
 Questions *questions;
 Connector connector;
 
 int* sockets;
 char** usuarios;
-int MAX_USUARIOS 20;
+int MAX_USUARIOS = 20;
 
 
 int main(int argc, char *argv[]) {
-  char socketsusu[40];
   char *datos;
   int numerousuarios;
   char registro;
   char nombre[20];
-  
+  int i = 0;
 
-  sockets = (int*) malloc (N_MAX_USUARIOS*sizeof(int));
+  sockets = (int*) malloc (MAX_USUARIOS*sizeof(int));
   for (i=0;i<MAX_USUARIOS;i++)
     sockets[i]=-1;
   
-  usuarios = (char**) malloc (N_MAX_USUARIOS*sizeof(char*));
+  usuarios = (char**) malloc (MAX_USUARIOS*sizeof(char*));
   for (i=0;i<MAX_USUARIOS;i++)
-    usuarios[i]=-1;			// VARIABLE GLOBAL¿??¿?¿?¿?¿?¿???????¿?¿??¿?¿?¿?¿?¿?¿?¿?¿?¿?
+    usuarios[i]=0;			// VARIABLE GLOBAL¿??¿?¿?¿?¿?¿???????¿?¿??¿?¿?¿?¿?¿?¿?¿?¿?¿?
   
 	// Indicamos al conector el fichero con las preguntas
 	strcpy(connector.questionsFilename, "data/questions.db");
@@ -41,9 +40,10 @@ int main(int argc, char *argv[]) {
 	// Liberamos memoria
 	Questions_free(questions);
 
-	// Crear el socket
-	
-  datos=Socket_leet(sock);
+	// TODO!!! Crear el socket, la siguiente línea tiene que ser sustituida
+	int sock = 0;
+
+  datos=Socket_leer(sock);
   if(datos[0]=='1'){
     
   }
@@ -68,9 +68,13 @@ int main(int argc, char *argv[]) {
 	
 	strcpy(usuarios[numerousuarios],nombre); // Guardamos el nombre del usuario en el array de usuarios
 	
-	registro=Registro_altausuario(int socket, char *datos); // Llamo a registro alta usuario con el socket y "usuario clave"
-	if (strcmp(registro,'1')==0)	  	Socket_escribir(sock,'O'); // Comprobamos si ha ido todo
-	else 					Socket_escribir(sock,'E'); // correctamente en el alta.
+	registro=Registro_altausuario(sock, datos); // Llamo a registro alta usuario con el socket y "usuario clave"
+	if (registro == '1') {
+	  Socket_escribir(sock,"O"); // Comprobamos si ha ido todo
+	}
+	else {
+	  Socket_escribir(sock,"E"); // correctamente en el alta.
+	}
   }
 	
   return 0;
