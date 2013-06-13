@@ -1,10 +1,9 @@
-
 CC = gcc
 DEBUG = -g
 CFLAGS = -Wall -c ${DEBUG} -Iinclude
 LFLAGS = -Wall ${DEBUG} -Iinclude
 
-all: client server
+all: Questions.o Socket.o dice.o litar_cliente.o client server
 
 clean:
 	rm -f lib/*.o
