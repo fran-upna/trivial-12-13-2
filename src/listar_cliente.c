@@ -19,7 +19,7 @@ void listar_cliente_pdisponibles(int sock)
   char *buffer, **resultado;
   int size_buf = 30;
   int npartidas,palabras,i;
-  char *nompartida;
+
   //buffer = (char *)malloc(size_buf*sizeof(char));
   Socket_escribir(sock,"P_DISPONIBLES");
   //escribir(sock,"P_DISPONIBLES\n");
@@ -31,13 +31,13 @@ void listar_cliente_pdisponibles(int sock)
     resultado[i]=(char *)malloc(size_buf*sizeof(char));
   listar_cliente_dividir(resultado,buffer,palabras); 
   npartidas = atoi(resultado[1]);
-  //printf("Numero de partidas disponibles = %d\n",npartidas);
-  nompartida = (char *)malloc(size_buf*sizeof(char));
+  char nombrePartidas[npartidas];
+  printf("Numero de partidas disponibles = %d\n",npartidas);
   printf("Estas son las %d partidas disponibles: \n",npartidas);
   for(i=0;i<npartidas;i++)
   {    
-     nompartida = Socket_leer(sock);
-     printf("%s",nompartida);
+     nombrePartidas[i] = Socket_leer(sock);
+     printf("%d.- Partida con nombre '%s'\n",i+1,nombrePartidas[i])
   }  
 //   free();
 }
