@@ -37,3 +37,8 @@ Registro.o:
 listar_cliente.o:
 	${CC} ${CFLAGS} src/listar_cliente.c -o lib/listar_cliente.o
 
+categorias:
+	${CC} ${CFLAGS} src/categorias.c -o lib/categorias.o
+
+tiempo_pregunta:
+	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
