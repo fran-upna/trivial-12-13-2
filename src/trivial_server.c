@@ -27,8 +27,10 @@ int main(int argc, char *argv[]) {
     sockets[i]=-1;
   
   usuarios = (char**) malloc (MAX_USUARIOS*sizeof(char*));
-  for (i=0;i<MAX_USUARIOS;i++)
-    usuarios[i]=0;			// VARIABLE GLOBAL¿??¿?¿?¿?¿?¿???????¿?¿??¿?¿?¿?¿?¿?¿?¿?¿?¿?
+  for (i=0;i<MAX_USUARIOS;i++) {
+    usuarios[i]=(char *)malloc(50*sizeof(char));
+    usuarios[i][0]=0;
+  }
   
 	// Indicamos al conector el fichero con las preguntas
 	strcpy(connector.questionsFilename, "data/questions.db");
@@ -51,11 +53,10 @@ int main(int argc, char *argv[]) {
 	// REGISTRO DE USUARIO
 	datos=Socket_leer(sock); //Recibe en datos el "usuario clave"
 	
-	int o=0;
-	while(sockets[o] != -1) { // Buscamos espacio para guardar el usuario
-	  o++;
-	}
-	numerousuarios=o; //El usuario actual y su socket estan en la posicion numerousuarios
+	int numerousuarios=0;
+	while(sockets[numerousuarios] != -1) { // Buscamos espacio para guardar el usuario
+	  numerousuarios++;
+	} //El usuario actual y su socket estan en la posicion numerousuarios
 	
 	sockets[numerousuarios]=sock; // Guardamos el socket del usuario en el array de sockets
 	
@@ -69,7 +70,7 @@ int main(int argc, char *argv[]) {
 	strcpy(usuarios[numerousuarios],nombre); // Guardamos el nombre del usuario en el array de usuarios
 	
 	registro=Registro_altausuario(sock, datos); // Llamo a registro alta usuario con el socket y "usuario clave"
-	if (registro == '1') {
+	if (registro == 1) {
 	  Socket_escribir(sock,"O"); // Comprobamos si ha ido todo
 	}
 	else {

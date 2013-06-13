@@ -10,18 +10,25 @@ int Registro_comprobarusuarios(char *usuario){
   // Comprobamos si el usuario existia, si estaba dado de alta en el fichero de
   // usuarios registrados, devolvemos 0, si no existía devuelve 1.
   FILE *ficheroservidor;
-  int dev=1;
+  int dev=1, noentra=1;
   char usu[20], cla[20];
-  ficheroservidor = fopen("data/usuariosregistrados.cfg","r");
-  if(ficheroservidor == NULL) { // si no existe el fichero servidor
-    return 1;  
+  ficheroservidor = fopen("usuariosregistrados.cfg","r");
+
+  if(ficheroservidor == NULL) { // si no existe el fichero de usuarios registrados
+    dev=1; 
+    noentra=0;
   }
-  while(!feof(ficheroservidor)){
-    fscanf(ficheroservidor, "%s %s\n",usu,cla);
-    if (strcmp(usu,usuario)==0)
-      dev=0;
-  }
+   
+  if (noentra==1) {
+    while(!feof(ficheroservidor)){    
+      fscanf(ficheroservidor, "%s %s\n",usu,cla);  
+      if (strcmp(usu,usuario)==0) {
+	dev=0;
+	printf("El usuario existia\n");
+      }
+    }  
   fclose(ficheroservidor);
+  }
   return dev;
 }
 
@@ -34,17 +41,19 @@ char Registro_altausuario(int socket, char *envio){
   while(envio[i]!=' ') { // Extreamos el nombre del usuario.
     usuario[a]=envio[i];
     i++;
+    a++;
   }
+  usuario[a]=0;
+
   i++;
-  
-  // 0 para terminar cadena¿?¿?¿?¿?¿?¿?¿
-  
   a=0;
   while (envio[i] != 0) { // Extreamos la clave del usuario.
     clave[a]=envio[i];
     i++;
     a++;
   }
+  clave[a]=0;
+  
   FILE *ficheroservidor;
   if (Registro_comprobarusuarios(usuario)==1) {
     // No existia el usuariosregistrados  
