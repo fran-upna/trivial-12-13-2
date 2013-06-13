@@ -11,7 +11,7 @@
 // si no pasan los 10 segundos, no se envía nada
 void iniciarContador(FILE* sock) {
 	int seg=0;
-	pid_contador = fork();
+	pid_t pid_contador = fork();
 	if(pid_contador == 0) {
 		while (seg<10){
 			seg++;
