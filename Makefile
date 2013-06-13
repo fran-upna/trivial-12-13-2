@@ -35,3 +35,8 @@ dice:
 Registro.o:
 	${CC} ${CFLAGS} src/Registro.c -o lib/Registro.o
 
+categorias:
+	${CC} ${CFLAGS} src/categorias.c -o lib/categorias.o
+
+tiempo_pregunta:
+	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
