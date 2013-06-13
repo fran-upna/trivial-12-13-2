@@ -2,7 +2,7 @@
 #include <string.h>
 #include <QuestionType.h>
 
-void categoria(int x, char cat[]) {
+void categorias(int x, char cat[]) {
 	switch(x) {
 		case GEOGRAPHY: strcpy(cat, "GEOGRAPHY");
 				break;
