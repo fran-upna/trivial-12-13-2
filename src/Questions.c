@@ -26,7 +26,15 @@ void Questions_addToList(Questions *questions, Question *new) {
 	questions->data[category] = (Question *)realloc(questions->data[category], (questions->perCategory[category] + 1) * sizeof(Question));
 	questions->total++;
 	questions->perCategory[category]++;
-	memcpy(&(questions->data[category][questions->perCategory[category] - 1]), &new, sizeof(Question));
+
+	Question *q = &(questions->data[category][questions->perCategory[category] - 1]);
+	q->category = new->category;
+	strcpy(q->question, new->question);
+	strcpy(q->valid, new->valid);
+	strcpy(q->invalid1, new->invalid1);
+	strcpy(q->invalid2, new->invalid2);
+	strcpy(q->invalid3, new->invalid3);
+	//memcpy(&(questions->data[category][questions->perCategory[category] - 1]), &new, sizeof(Question));
 }
 
 /**
