@@ -64,10 +64,10 @@ char Registro_altausuario(int socket, char *envio){
     fflush(ficheroservidor);
     fclose(ficheroservidor);
     //Confirmacion al cliente registro OK
-    return(1);
+    return 1;
   }
   else{
-    return(0);
+    return 0
   }
 }
 
