@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <Connector.h>
 #include <Questions.h>
 #include <Question.h>
