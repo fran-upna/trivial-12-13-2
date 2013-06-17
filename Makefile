@@ -1,4 +1,3 @@
-
 CC = gcc
 DEBUG = -g
 CFLAGS = -Wall -c ${DEBUG} -Iinclude
@@ -13,10 +12,10 @@ clean:
 	rm -f data/questions.db
 
 server: folders Questions.o Socket.o SeleccionCategoria.o
-	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o lib/SeleccionCategoria.o
+	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o lib/SeleccionCategoria.o lib/Registro.o
 
 client: folders Questions.o Socket.o SeleccionCategoria.o
-	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o
+	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o lib/Registro.o
 
 Questions.o:
 	${CC} ${CFLAGS} src/Questions.c -o lib/Questions.o
