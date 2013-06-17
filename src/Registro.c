@@ -57,7 +57,7 @@ char Registro_altausuario(int socket, char *envio){
   FILE *ficheroservidor;
   if (Registro_comprobarusuarios(usuario)==1) {
     // No existia el usuariosregistrados  
-    ficheroservidor = fopen("data/usuariosregistrados.cfg","a+");
+    ficheroservidor = fopen("usuariosregistrados.cfg","a+");
     fprintf(ficheroservidor, "%s",usuario);
     fputc(' ',ficheroservidor);
     fprintf(ficheroservidor, "%s\n", clave);
