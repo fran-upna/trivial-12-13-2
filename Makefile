@@ -8,8 +8,8 @@ all: client server
 clean:
 	rm -f lib/*.o
 	rm -rf bin/*.dSYM
-	rm -f bin/trivial
-	rm -f data/questions.db
+	rm -f bin/*
+	> data/questions.db
 
 server: folders Questions.o Socket.o SeleccionCategoria.o
 	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o lib/SeleccionCategoria.o lib/Registro.o
