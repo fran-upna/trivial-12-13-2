@@ -9,6 +9,7 @@ int main(int argc, char *argv[]) {
   char opcion;
   char enviaopcion[4] = {0,0,0,0};
   char buffer[50];
+  char registro;
   //Crear el socket
   printf("Bienvenido a nuestro TRIVIAL\n¿Que deseas hacer?\n 1.-Autentificarte\n 2.-Registrarte\n 3.-Salir\n");
   scanf("%c",&opcion);
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
     
     Socket_escribir(sock,envio); // Envia por el socket al servidor su nombre y su clave, en una misma variable, datos.
     
-    buffer=Socket_leer(sock); // Recibe la respuesta del registro
+    buffer[0]=Socket_leer(sock); // Recibe la respuesta del registro
     
     if (buffer[0] == 'O'){ // Si recibe 'O' todo ha ido bien
       printf("Registro correcto\n");
