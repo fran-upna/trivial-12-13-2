@@ -2,17 +2,17 @@
 #include <stdio.h>
 #include <string.h>
 
-struct users{
+/* struct users{
 	char *codigo;
-	int ocupado; /* Ocupado=1, Libre=0 */
+	int ocupado; // Ocupado=1, Libre=0 
 	struct users *sig;
-}usuario;
+}usuario;*/
 
 
-typedef struct nuevas_partidas{
+/*typedef struct nuevas_partidas{
 	char *codPartida, *jugador;
 	struct nuevas_partidas *sig;
-} nuevas_partidas;
+} nuevas_partidas; */
 
 /*struct partidas{
 	char *codigo;
@@ -221,7 +221,7 @@ void crearIdentificadorPartida(char identPartida[]){
 		p=part;
 		do{
 			if (strcmp(((*p).codigo),ident)==0){
-				valido=0;
+				valido=1;//Codigo repetido, no sirve
 			}
 			p=(*p).sig; //El puntero apunta al siguiente usuario
 		}while(p!=NULL);
@@ -231,12 +231,12 @@ void crearIdentificadorPartida(char identPartida[]){
 			valido=0;
 		else 
 			if(strcmp(ident, p->codPartida)==0)
-				valido=0;
+				valido=1; //Codigo repetido, no sirve
 			else
 				while(p->sig!=NULL){
 					p=p->sig;
 					if(strcmp(ident, p->codPartida)==0){
-						valido=0;
+						valido=1;//Codigo repetido, no sirve
 						break;
 					}
 				}
@@ -246,12 +246,12 @@ void crearIdentificadorPartida(char identPartida[]){
 			valido=0;
 		else 
 			if(strcmp(ident, np->codPartida)==0)
-				valido=0;
+				valido=1;//Codigo repetido, no sirve
 			else
 				while(np->sig!=NULL){
 					np=np->sig;
 					if(strcmp(ident, np->codPartida)==0){
-						valido=0;
+						valido=1;//Codigo repetido, no sirve
 						break;
 					}
 				}
