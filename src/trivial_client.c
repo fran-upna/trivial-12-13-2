@@ -4,10 +4,11 @@
 
 #include <Registro.h>
 #include <Socket.h>
+#include <nuevaPartida.h>
 
 int main(int argc, char *argv[]) {
   char opcion;
-  char enviaopcion[4] = {0,0,0,0};
+  char enviaopcion[4] = {0,0,0,0}; 
   char buffer[50];
   char registro;
   //Crear el socket

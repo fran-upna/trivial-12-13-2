@@ -6,6 +6,7 @@
 #include <Connector.h>
 
 #include <Registro.h>
+#include <nuevaPartida.h>
 
 Questions *questions;
 Connector connector;
