@@ -26,6 +26,7 @@
 
 /* Definimos variables de tamaños de los arrays */
 #define TAM_BUFF 300
+#define TAM_USR 20
 
 
 void nuevaPartidaClient(int socket){
@@ -186,12 +187,12 @@ void registrarUsuarioNoDisponible(char usuario[]) {
 	if(no_disponibles!=NULL){
 		while (no_disponibles[i]!=NULL)
 			i++;
-		no_disponibles[i] = (char*) malloc(sizeof(usuario)); // ESTO SE PUEDE??
+		no_disponibles[i] = (char*) malloc(TAM_USR*sizeof(char)); // ESTO SE PUEDE??
 		strcpy(no_disponibles[i],usuario);
 		no_dispoibles[i+1] = NULL;
 	}
 	else {
-		no_disponibles[0] = (char*) malloc(sizeof(usuario)); // ESTO SE PUEDE??
+		no_disponibles[0] = (char*) malloc(TAM_USR*sizeof(char)); // ESTO SE PUEDE??
 		strcpy(no_disponibles[0],usuario);
 		no_dispoibles[1] = NULL;
 	}
@@ -293,11 +294,12 @@ void cargar_nuevas_partidas(){
 			}
 			else{
 				if(p_nuevaspartidas->sig==NULL){
+					fgets(buff, 100, f);
 					np = (nuevas_partidas*) malloc(sizeof(nuevas_partidas));
-					p_nuevaspartidas->sig = np;
 					np->codPartida = obtenerCodPartida(buff);
 					np->jugador = obtenerJugador(buff);
 					np->sig = NULL;
+					p_nuevaspartidas->sig = np;
 				}
 				else{
 					fgets(buff, 100, f);
@@ -312,6 +314,8 @@ void cargar_nuevas_partidas(){
 				}
 			}
 		}
+		else 
+			p_nuevaspartidas=NULL;
 	}
 	fclose(f);
 }
@@ -368,4 +372,69 @@ char* obtenerNombre(char* buff){
 		i++;
 		j++;
 	}
+}
+
+void cargar_no_disponibles(){
+	// Se define como variable global: p_nodisponibles
+	FILE* f;
+	char buff[100];
+	int i, j;
+
+	f=fopen("no_disponibles.txt","r");
+	if(f!=NULL){
+		while(!feof(f)){
+			fgets(buff, 100, f);
+			if(p_nodisponibles[0]==NULL){
+				i=0;
+				j=0;
+				while(j<TAM_USR-1 && buff[j]!='\0'){
+					p_nodisponibles[i][j]=buff[j];
+					j++;
+				}
+				j++;
+				p_nodisponibles[0][j]='\0';
+			}
+			else{
+				i=1;
+				while(p_nodisponibles[i]!=NULL)
+					i++;
+				j=0;
+				while(j<TAM_USR-1 && buff[j]!='\0'){
+					p_nodisponibles[i][j]=buff[j];
+					j++;
+				}
+				j++;
+				p_nodisponibles[i][j]='\0';
+			}
+		}
+	}
+	else
+		p_nodisponibles[0]=NULL;
+	fclose(f);
+}
+
+void volcar_no_disponibles(){
+	// Se define como variable global: p_nuevaspartidas
+	FILE* f;
+	char buff[100]; 
+	int i;
+
+	f=fopen("no_disponibles.txt","w+");
+	if(f!=NULL){
+		if(p_nodisponibles[0]==NULL){
+			fclose(f);
+			return;
+		}
+		else{
+			i=0;
+			while(p_nodisponibles[i]!=NULL){
+				fprintf(f,"%s\n", p_nodisponibles[i]);
+				i++;
+			}
+		}
+	}
+	else{
+		printf("ERROR en el volcado de los datos al fichero de no disponibles.");
+	}
+	fclose(f);
 }
