@@ -7,6 +7,7 @@
 
 #include <Registro.h>
 #include <nuevaPartida.h>
+#include <Socket.h>
 
 Questions *questions;
 Connector connector;
@@ -14,6 +15,9 @@ Connector connector;
 int* sockets;
 char** usuarios;
 int MAX_USUARIOS = 20;
+
+nuevasPartidas *p_nuevaspartidas;
+char p_nodisponibles[200][20]; // Por razones de facilidad de programación sólo se podrán tener 199 usuarios en este estado.
 
 
 int main(int argc, char *argv[]) {
@@ -78,6 +82,12 @@ int main(int argc, char *argv[]) {
 	  Socket_escribir(sock,"E"); // correctamente en el alta.
 	}
   }
+
+  // Debemos crear el select o el formato de procesos adecuado para hacer que el servidor sea concurrente.
+
+  // Comienzo del protocolo creando una nueva partida.
+  // Para encontrar el nombre del usuario se busca sobre la estructura creada de sockets y busca su nombre que se encuentra en la misma posición
+  nuevaPartidaServer(sock, /*nombre del usuario*/)
 	
   return 0;
 }
