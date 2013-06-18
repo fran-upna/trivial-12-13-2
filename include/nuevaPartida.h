@@ -2,7 +2,7 @@
 
 // PARA EL SERVIDOR
 // Iniciar una nueva partida en el servidor. 
-void nuevaPartidaClient(int socket);
+void nuevaPartidaServer(int socket);
 // Carga de los datos del fichero de no_disponibles en la variable global no_disponibles.
 void cargar_no_disponibles();
 // Carga de los datos del fichero de nuevas_partidas en la variable global p_nuevaspartidas.
@@ -16,4 +16,4 @@ void volcar_nuevas_partidas();
 
 // PARA EL CLIENTE
 // Iniciar una nueva partida en el lado del cliente.
-void nuevaPartidaClient(int socket);
+int nuevaPartidaClient(int socket);

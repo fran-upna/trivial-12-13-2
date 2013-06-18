@@ -187,15 +187,16 @@ void registrarUsuarioNoDisponible(char usuario[]) {
 	if(no_disponibles!=NULL){
 		while (no_disponibles[i]!=NULL)
 			i++;
-		no_disponibles[i] = (char*) malloc(TAM_USR*sizeof(char)); // ESTO SE PUEDE??
+		no_disponibles[i] = (char*) malloc(TAM_USR*sizeof(char));
 		strcpy(no_disponibles[i],usuario);
 		no_dispoibles[i+1] = NULL;
 	}
 	else {
-		no_disponibles[0] = (char*) malloc(TAM_USR*sizeof(char)); // ESTO SE PUEDE??
+		no_disponibles[0] = (char*) malloc(TAM_USR*sizeof(char));
 		strcpy(no_disponibles[0],usuario);
 		no_dispoibles[1] = NULL;
 	}
+	volcar_no_disponibles();
 }
 
 void crearIdentificadorPartida(char identPartida[]){
