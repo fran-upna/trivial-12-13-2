@@ -1,11 +1,11 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/types.h>
-#include<netinet/in.h>
-#include<arpa/inet.h>
-#include<sys/socket.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 
-
+#define TAM_BUFF 300
 
 ///////////////////////////////
 //Implementacion de funciones//
@@ -122,7 +122,6 @@ int Socket_escribir(FILE* sock, char buf[]) {
 }
 */
 
-// REQUISITO: Todos los mensajes deben acabar en \n
 char* Socket_leer(int sock){
     char buf[TAM_BUFF];
 

@@ -11,11 +11,11 @@ clean:
 	rm -f bin/*
 	> data/questions.db
 
-server: folders Questions.o Socket.o SeleccionCategoria.o
-	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o lib/SeleccionCategoria.o lib/Registro.o
+server: folders Questions.o Socket.o SeleccionCategoria.o nuevaPartida.o
+	${CC} ${LFLAGS} src/trivial_server.c -o bin/trivial_server lib/Questions.o lib/Socket.o lib/SeleccionCategoria.o lib/Registro.o lib/nuevaPartida.o
 
-client: folders Questions.o Socket.o SeleccionCategoria.o
-	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o lib/Registro.o
+client: folders Questions.o Socket.o SeleccionCategoria.o nuevaPartida.o
+	${CC} ${LFLAGS} src/trivial_client.c -o bin/trivial_client lib/Questions.o lib/Registro.o lib/nuevaPartida.o
 
 Questions.o:
 	${CC} ${CFLAGS} src/Questions.c -o lib/Questions.o
@@ -43,8 +43,12 @@ categorias:
 tiempo_pregunta:
 	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
 
+
 lista_preguntas: folders Questions.o
 	${CC} ${CFLAGS} src/ListaPreguntas.c -o lib/ListaPreguntas.o lib/Questions.o
 
 client_admin: folders lista_preguntas Questions.o
 	${CC} ${LFLAGS} src/trivial_client_adm.c -o bin/trivial_client_adm lib/ListaPreguntas.o lib/Questions.o
+
+nuevaPartida.o:
+	${CC} ${CFLAGS} src/nuevaPartida.c -o lib/nuevaPartida.o

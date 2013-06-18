@@ -4,13 +4,23 @@
 
 #include <Registro.h>
 #include <Socket.h>
+#include <nuevaPartida.h>
 
 int main(int argc, char *argv[]) {
   char opcion;
-  char enviaopcion[4] = {0,0,0,0};
+  char enviaopcion[4] = {0,0,0,0}; 
   char buffer[50];
   char registro;
+
+  /* Comprobar que los parámetros son correctos */
+  if (argc!=3){
+    printf("ERROR: no ha utilizado la sintaxis correcta\nUso: %s <direccion_ip> <puerto>\n", argv[0]);
+    exit(-1);
+  }
+
   //Crear el socket
+  int sock=Socket_prepararCliente(argv[1],argv[2]);
+
   printf("Bienvenido a nuestro TRIVIAL\n¿Que deseas hacer?\n 1.-Autentificarte\n 2.-Registrarte\n 3.-Salir\n");
   scanf("%c",&opcion);
   
@@ -30,6 +40,7 @@ int main(int argc, char *argv[]) {
     if (buffer[0] == 'O'){ // Si recibe 'O' todo ha ido bien
       printf("Registro correcto\n");
       // AQUÍ CONTINUA EL FLUJO DE EJECUCIÓN NORMAL DEL PROGRAMA
+      while(nuevaPartida(sock)); // Mientras no se registre una nueva partida de forma efectiva se continua en el bucle.
     }
     else {
       printf("Registro incorrecto\n");
