@@ -29,21 +29,22 @@
 #define TAM_USR 20
 
 
-void nuevaPartidaClient(int socket){
+int nuevaPartidaClient(int socket){
 	char buffer[TAM_BUFF];
 	Socket_escribir(socket, "C NEW GAME\n");
 	buffer = Socket_leer(socket);
-		if(strcmp(buffer, "S OK NEW GAME"));
+		if(strcmp(buffer, "S OK NEW GAME")){
 			printf("La partida se ha creado correctamente. Esperando contrincante...\n");
-		else 
-			printf("Problemas al crear la partida. Intentando de nuevo...");
+			return 0; // retornar que todo ha ido bien.
+		}
+		else {
+			printf("Problemas al crear la partida. Volviendo al menú principal.");
+			return 1; // retornar el error al crear la partida
+		}
 }
 
 void nuevaPartidaServer(int socket,char user[]){
 	char peticion[20];
-	
-	//Cargar_datos(us);	// TIENE QUE ESTAR EN EL PROGRAMA PRINCIPAL
-	//Cargar_datos(part); // TIENE QUE ESTAR EN EL PROGRAMA PRINCIPAL
 	
 	peticion = Socket_leer(socket);
 	if (strstr(peticion,"C NEW GAME")!=NULL){
