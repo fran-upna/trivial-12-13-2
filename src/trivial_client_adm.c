@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <Socket.h>
+
+#include <ListaPreguntas.h>
 
 int main(int argc, char *argv[]) {
 	
-	int res1, res2, res3; // Variables para el control de la selección de usuario
+	int res1, res2, res3, cat; // Variables para el control de la selección de usuario
 	
 	// Menú que lista todas las opciones de administrador de forma jerárquica
 	do{
@@ -31,7 +31,16 @@ int main(int argc, char *argv[]) {
 									printf("Listando categorías disponibles...\n");
 									break;
 							case 3: // Llamar a función para listar preguntas de cada categoría
-									printf("Listando preguntas de una categoría...\n");
+									printf("\nIntroduce el número de la categoría a listar:\n\n");
+									printf("	1. Entretenimiento\n");
+									printf("	2. Geografía\n");
+									printf("	3. Historia\n");
+									printf("	4. Literatura\n");
+									printf("	5. Ciencia\n");
+									printf("	6. Deportes\n");
+									printf("\n	Categoría: ");
+									scanf("%d", &cat);
+									lista_categorias(cat);
 									break;
 							case 4: // Llamar a función para eliminar pregunta
 									printf("Eliminando pregunta...\n");

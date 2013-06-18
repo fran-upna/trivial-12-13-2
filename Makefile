@@ -42,3 +42,9 @@ categorias:
 
 tiempo_pregunta:
 	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
+
+lista_preguntas: folders Questions.o
+	${CC} ${CFLAGS} src/ListaPreguntas.c -o lib/ListaPreguntas.o lib/Questions.o
+
+client_admin: folders lista_preguntas Questions.o
+	${CC} ${LFLAGS} src/trivial_client_adm.c -o bin/trivial_client_adm lib/ListaPreguntas.o lib/Questions.o
