@@ -10,7 +10,7 @@
 #include <pthread.h>
 
 #include <categorias.h>
-#include <Questions.h>
+//#include <Questions.h> Eliminado porque lo proporciona ListaPreguntas.h
 #include <Connector.h>
 #include <ListaPreguntas.h>
 
@@ -116,7 +116,8 @@ int main (int argc, char * argv[]) {
 								case 0:		devolverCategorias(descriptores[i]);
 											break;
 							
-								case 1:		switch(buf[17]) {
+								case 1:		//printf("[DEBUG] CAT -> %c\n", buf[16]);
+                                            switch(buf[16]) {
                                                 case '1':   cat = 1;
                                                             break;
                                                 case '2':   cat = 2;
@@ -135,7 +136,7 @@ int main (int argc, char * argv[]) {
                                             if(cat >= 1 && cat <= 6) {
                                                 devuelvePreguntas(descriptores[i], cat, questions);
                                             }
-                                            
+
 											break;
 							
 								default:	printf("Error!! Los parámetros enviados no son correctos\n");
@@ -205,4 +206,20 @@ void *apagado(void *arg){
 			exit(0);
 		}
 	}
+}
+
+void devuelvePreguntas(int sock, int cat, Questions *questions) {
+    int i;
+    Question *q;
+    char preg[255], num[5];
+
+    printf("Preguntas totales en la categoría: %d\n", questions->perCategory[cat]);
+    sprintf(num, "%d", questions->perCategory[cat]);
+    Socket_escribir(sock, num);
+
+    for(i = 0; i < questions->perCategory[cat]; i++) {
+        q = &questions->data[cat][i];
+        strcpy(preg, q->question);
+        Socket_escribir(sock, preg);
+    }
 }
