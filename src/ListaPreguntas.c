@@ -4,7 +4,7 @@
 #include <Questions.h>
 #include <Question.h>
 
-void lista_categorias(int cat) {
+void lista_preguntas(int cat) {
 	int i;
 
 	Connector connector;

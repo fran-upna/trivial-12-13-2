@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 									printf("	6. Deportes\n");
 									printf("\n	Categoría: ");
 									scanf("%d", &cat);
-									lista_categorias(cat);
+									lista_preguntas(cat);
 									break;
 							case 4: // Llamar a función para eliminar pregunta
 									printf("Eliminando pregunta...\n");
