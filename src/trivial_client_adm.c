@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+<<<<<<< HEAD
+#include <categorias.h>
+=======
 #include <Socket.h>
+>>>>>>> 86ad9448762eefb12d5f336a4980b26147c7cef9
 #include <ListaPreguntas.h>
 
 #define PW "1234"
@@ -57,6 +61,7 @@ int main(int argc, char *argv[]) {
 									break;
 							case 2: // Llamar a función para listar categorías
 									printf("Listando categorías disponibles...\n");
+									pedirCategorias(socket);
 									break;
 							case 3: // Llamar a función para listar preguntas de cada categoría
 									printf("\nIntroduce el número de la categoría a listar:\n\n");
