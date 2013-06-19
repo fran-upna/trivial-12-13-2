@@ -31,3 +31,12 @@ Socket.o:
 
 dice:
 	${CC} ${CFLAGS} include/dice.h -o lib/dice.o
+
+abandonar: abandonar.c
+	${CC} -c src/abandonar src/abandonar.c
+	
+nuevaPartida: nuevaPartida.c
+	${CC} -c src/nuevaPartida src/nuevaPartida.c
+	
+clean: src/abandonar src/nuevaPartida 
+	rm src/abandonar src/nuevaPartida 
