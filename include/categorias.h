@@ -28,3 +28,4 @@ void devolverCategorias(int socket);
 // Entrada: un entero que indica el socket del servidor con el que se va a comunicar.
 // Requisitos: no encontrarse en medio de ninguna otra comunicación con el servidor.
 // Salida: ninguna.
+void pedirCategorias(int socket);
