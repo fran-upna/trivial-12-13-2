@@ -1,29 +1,38 @@
 #include <stdio.h>
 #include <string.h>
+
 #include <Connector.h>
 #include <Questions.h>
 #include <Question.h>
+#include <Socket.h>
 
-void lista_preguntas(int cat) {
+void lista_preguntas(int cat, int sock) {
 	int i;
+	char *preg, *num, msg[17];
 
-	Connector connector;
-	Questions *preguntas;
-	Question preg, *q;
-	
-	strcpy(connector.questionsFilename, "data/questions.db");
-	
-	preguntas = Questions_init();
-	Questions_load(&connector, preguntas);
+	strcpy(msg, "C QUESTION LIST ");
+	msg[17] = (char)cat;
+    Socket_escribir(sock, msg);
 
-	Questions_add(&connector, preguntas, &preg);
+	num = Socket_leer(sock);
+	printf("Preguntas totales en la categoría: %s\n", num);
 
-	printf("Preguntas totales en la categoría: %d\n", preguntas->perCategory[cat]);
-
-	for(i = 0; i < preguntas->perCategory[cat]; i++) {
-		q = &preguntas->data[cat][i];
-		printf("Pregunta %d: %s\n", i+1, q->question);
+	for(i = 0; i < (int)num; i++) {
+		preg = Socket_leer(sock);
+		printf("Pregunta %d: %s\n", i+1, preg);
 	}
+}
 
-	Questions_free(preguntas);
+void devuelvePreguntas(int sock, int cat, Questions *questions) {
+    int i;
+    Question *q;
+    char preg[255];
+
+    printf("Preguntas totales en la categoría: %d\n", questions->perCategory[cat]);
+
+    for(i = 0; i < questions->perCategory[cat]; i++) {
+        q = &questions->data[cat][i];
+        strcpy(preg, q->question);
+        Socket_escribir(sock, preg);
+    }
 }

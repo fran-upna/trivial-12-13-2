@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
+#include <Socket.h>
 #include <ListaPreguntas.h>
 
 #define PW "1234"
@@ -22,6 +24,15 @@ int main(int argc, char *argv[]) {
 		scanf("%s",pass);
 	
 	}
+
+	/* Comprobar que los parámetros son correctos */
+  	if (argc!=3){
+	    printf("ERROR: no ha utilizado la sintaxis correcta\nUso: %s <direccion_ip> <puerto>\n", argv[0]);
+	    exit(-1);
+  	}
+
+  	//Crear el socket
+  	int sock=Socket_prepararCliente(argv[1],argv[2]);
 	
 	// Menú que lista todas las opciones de administrador de forma jerárquica
 	do{
@@ -57,7 +68,7 @@ int main(int argc, char *argv[]) {
 									printf("	6. Deportes\n");
 									printf("\n	Categoría: ");
 									scanf("%d", &cat);
-									lista_preguntas(cat);
+									lista_preguntas(cat, sock);
 									break;
 							case 4: // Llamar a función para eliminar pregunta
 									printf("Eliminando pregunta...\n");
