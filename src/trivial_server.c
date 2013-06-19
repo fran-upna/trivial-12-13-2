@@ -44,9 +44,6 @@ int main(int argc, char *argv[]) {
 	questions = Questions_init();
 	Questions_load(&connector, questions);
 
-	// Liberamos memoria
-	Questions_free(questions);
-
 	// TODO!!! Crear el socket, la siguiente línea tiene que ser sustituida
 	int sock = 0;
 
@@ -88,6 +85,10 @@ int main(int argc, char *argv[]) {
   // Comienzo del protocolo creando una nueva partida.
   // Para encontrar el nombre del usuario se busca sobre la estructura creada de sockets y busca su nombre que se encuentra en la misma posición
   nuevaPartidaServer(sock, /*nombre del usuario*/)
+
+  	// Al terminar la ejecución del programa...
+  	// Liberamos memoria
+	Questions_free(questions);
 	
   return 0;
 }
