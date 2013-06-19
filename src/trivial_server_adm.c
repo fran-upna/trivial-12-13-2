@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -13,6 +12,7 @@
 #include <categorias.h>
 #include <Questions.h>
 #include <Connector.h>
+#include <ListaPreguntas.h>
 
 #define TAM_BUFF 50
 
@@ -28,7 +28,7 @@ int comprobar (char cadena[]);
 void *apagado(void *arg);
 
 int main (int argc, char * argv[]) {
-    int sock;
+    int sock, cat;
     struct sockaddr_in servidor;
     char buf[20000];
     int i;
@@ -116,7 +116,26 @@ int main (int argc, char * argv[]) {
 								case 0:		devolverCategorias(descriptores[i]);
 											break;
 							
-								case 1:		// Código para listar preguntas.
+								case 1:		switch(buf[17]) {
+                                                case '1':   cat = 1;
+                                                            break;
+                                                case '2':   cat = 2;
+                                                            break;
+                                                case '3':   cat = 3;
+                                                            break;
+                                                case '4':   cat = 4;
+                                                            break;
+                                                case '5':   cat = 5;
+                                                            break;
+                                                case '6':   cat = 6;
+                                                            break;
+                                                default:    printf("[ERROR] Categoría inválida.\n");
+                                            }
+
+                                            if(cat >= 1 && cat <= 6) {
+                                                devuelvePreguntas(descriptores[i], cat, questions);
+                                            }
+                                            
 											break;
 							
 								default:	printf("Error!! Los parámetros enviados no son correctos\n");
