@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-<<<<<<< HEAD
 #include <categorias.h>
-=======
 #include <Socket.h>
->>>>>>> 86ad9448762eefb12d5f336a4980b26147c7cef9
 #include <ListaPreguntas.h>
 
 #define PW "1234"
