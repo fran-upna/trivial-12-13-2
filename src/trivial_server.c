@@ -85,6 +85,13 @@ int main(int argc, char *argv[]) {
   // Comienzo del protocolo creando una nueva partida.
   // Para encontrar el nombre del usuario se busca sobre la estructura creada de sockets y busca su nombre que se encuentra en la misma posición
   nuevaPartidaServer(sock, /*nombre del usuario*/)
+  
+  
+  
+  
+  //Funcion que lee a traves del socket la categoria enviada y elegida por el cliente, y le envia al cliente una pregunta aleatoria a traves del 
+  //socket con la pregunta, sus respuestas y la respuesta 	que es correcta.
+  SeleccionCategoria_enviaPreguntas(sock);
 
   	// Al terminar la ejecución del programa...
   	// Liberamos memoria
