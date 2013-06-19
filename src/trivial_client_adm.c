@@ -1,10 +1,27 @@
 #include <stdio.h>
+#include <string.h>
 
 #include <ListaPreguntas.h>
+
+#define PW "1234"
+
 
 int main(int argc, char *argv[]) {
 	
 	int res1, res2, res3, cat; // Variables para el control de la selección de usuario
+	
+	char pass[15]; // Almacén para la contraseña
+	
+	printf("Conexión a la administración. Introduce la contraseña: ");
+	scanf("%s",pass);
+	
+	while (strcmp(pass,PW)!=0){
+		
+		printf("Contraseña incorrecta.\n");
+		printf("Introduce la contraseña: ");
+		scanf("%s",pass);
+	
+	}
 	
 	// Menú que lista todas las opciones de administrador de forma jerárquica
 	do{
@@ -78,11 +95,11 @@ int main(int argc, char *argv[]) {
 					break;
 				
 			default: if (res1!=0) {
-						printf("Introduce un número de acuerdo a las opciones listadas\n");
+						printf("Introduce un número de acuerdo a las opciones listadas.\n");
 					}
 		}
 		
 	}while (res1!=0);
-		
+	
 	return 0;
 }
