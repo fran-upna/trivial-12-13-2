@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	Questions_free(questions);
 
 	// TODO!!! Crear el socket, la siguiente línea tiene que ser sustituida
-	int sock = 0;
+	int sock = 0; //AQUI HAY QUE DEFINIR EL SOCKET!!!!!!!! Inicializado a cero para probar
 
   datos=Socket_leer(sock);
   if(datos[0]=='1'){
