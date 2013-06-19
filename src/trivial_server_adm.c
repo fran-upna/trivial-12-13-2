@@ -13,6 +13,7 @@
 //#include <Questions.h> Eliminado porque lo proporciona ListaPreguntas.h
 #include <Connector.h>
 #include <ListaPreguntas.h>
+#include <Socket.h>
 
 #define TAM_BUFF 50
 
