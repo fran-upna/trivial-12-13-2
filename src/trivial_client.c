@@ -50,5 +50,14 @@ int main(int argc, char *argv[]) {
   else {
     return 0;
   }
+  
+  
+  
+  //Funcion que elige una de las categorías anterirormente listadas, sus argumentos son las dos categorias son dos enteros
+  //representando las distintas categorías, y el sock es el socket.
+  SeleccionCategoria_seleccion(categroria1, categoria2, sock);
+  //Funcion que lee por el socket un mensaje que contiene la pregunta con sus respuestas, las muestra aleatoriamente, da la opcion de 
+  //elegir una respuesta, y devuelve un int con la posicion de la respuesta correcta.
+  int pos_correcta=SeleccionCategoria_Pregunta(sock);
   return 0;
 }
