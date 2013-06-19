@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <QuestionType.h>
+#include <Socket.h>
 
 void categorias(int x, char cat[]) {
 	switch(x) {
@@ -35,7 +36,8 @@ void devolverCategorias(int socket){
 // Requisitos: no encontrarse en medio de ninguna otra comunicación con el servidor.
 // Salida: ninguna.
 void pedirCategorias(int socket){
-	char* buff[300], cad;
+	char* buff;
+	char* cad;
 
 	Socket_escribir(socket, "C CATEGORY LIST");
 	buff = Socket_leer(socket);
@@ -49,4 +51,3 @@ void pedirCategorias(int socket){
    	while((cad = strtok( NULL, " \n")) != NULL)  // Posteriores llamadas
      		printf( "\t%s\n", cad );
 }
-	
