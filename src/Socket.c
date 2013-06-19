@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -124,6 +126,7 @@ int Socket_escribir(FILE* sock, char buf[]) {
 
 char* Socket_leer(int sock){
     char buf[TAM_BUFF];
+    FILE* f;
 
     f=fdopen(sock,"r");
     setbuf(f,NULL);
