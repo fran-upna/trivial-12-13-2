@@ -1,0 +1,1 @@
+void Comprueba_Ganador (char **no_disponibles,char **usuarios char *sockets, partidas *ppartida, int player);
