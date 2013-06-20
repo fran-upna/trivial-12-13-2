@@ -154,5 +154,5 @@ crear_lista_partidas()
 	  }
 	}
       }
-      volcado_no_disponibles();
+      volcar_no_disponibles();
     }
