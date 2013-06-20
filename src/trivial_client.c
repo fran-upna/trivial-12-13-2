@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
     if (buffer[0] == 'O'){ // Si recibe 'O' todo ha ido bien
       printf("Registro correcto\n");
       // AQUÍ CONTINUA EL FLUJO DE EJECUCIÓN NORMAL DEL PROGRAMA
-      while(nuevaPartida(sock)); // Mientras no se registre una nueva partida de forma efectiva se continua en el bucle.
+      while(nuevaPartidaClient(sock)); // Mientras no se registre una nueva partida de forma efectiva se continua en el bucle.
     }
     else {
       printf("Registro incorrecto\n");
