@@ -3,7 +3,7 @@ DEBUG = -g
 CFLAGS = -Wall -c ${DEBUG} -Iinclude
 LFLAGS = -Wall ${DEBUG} -Iinclude
 
-all: Questions.o Socket.o dice.o listar_cliente.o client server
+all: client server
 
 clean:
 	rm -f lib/*.o
@@ -37,8 +37,12 @@ Registro.o:
 listar_cliente.o:
 	${CC} ${CFLAGS} src/listar_cliente.c -o lib/listar_cliente.o
 
+unirse_cliente.o:
+	${CC} ${CFLAGS} src/unirse_cliente.c -o lib/unirse_cliente.o
+
 categorias:
 	${CC} ${CFLAGS} src/categorias.c -o lib/categorias.o
 
 tiempo_pregunta:
 	${CC} ${CFLAGS} src/tiempo_pregunta.c -o lib/tiempo_pregunta.o
+
