@@ -4,7 +4,7 @@
 
 #include <Questions.h>
 #include <Connector.h>
-
+#include <AUTENTIFICACION.h>
 #include <Registro.h>
 #include <nuevaPartida.h>
 #include <Socket.h>
@@ -18,14 +18,16 @@ int MAX_USUARIOS = 20;
 
 nuevasPartidas *p_nuevaspartidas;
 char p_nodisponibles[200][20]; // Por razones de facilidad de programación sólo se podrán tener 199 usuarios en este estado.
-
+char nombre[20];
+char contrasena[20];
+char buf[24];
+int i = 0;
+int res;
 
 int main(int argc, char *argv[]) {
   char *datos;
   int numerousuarios;
   char registro;
-  char nombre[20];
-  int i = 0;
 
   sockets = (int*) malloc (MAX_USUARIOS*sizeof(int));
   for (i=0;i<MAX_USUARIOS;i++)
@@ -49,7 +51,20 @@ int main(int argc, char *argv[]) {
 
   datos=Socket_leer(sock);
   if(datos[0]=='1'){
-    
+      bzero(buf,strlen(buf));
+      sscanf(datos,"P AUTH %s %s\n",nombre,contrasena); 		    
+      res=autentificacion(datos,sock);
+      if(res==0)
+         exit(-1);  
+      Socket_escribir(sock,res);
+      i=0;
+      while(sockets[i]==-1)
+         i++; 
+      if(res==1)
+      {
+         jugador.socket=sock; 
+         sprintf(usuarios[i],"%s",nombre); //relleno el campo nombre y socket del jugador
+      }
   }
   else if (datos[0] == '2'){
 	// REGISTRO DE USUARIO

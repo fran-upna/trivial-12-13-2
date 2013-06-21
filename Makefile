@@ -55,3 +55,6 @@ lista_preguntas: folders Questions.o
 
 nuevaPartida.o:
 	${CC} ${CFLAGS} src/nuevaPartida.c -o lib/nuevaPartida.o
+
+AUTENTIFICACION.o: 
+	${CC} ${CFLAGS} src/AUTENTIFICACION.c -o lib/AUTENTIFICACION.o

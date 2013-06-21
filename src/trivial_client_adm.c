@@ -54,7 +54,26 @@ int main(int argc, char *argv[]) {
 					
 						switch (res2){
 							case 1: // Llamar a función para añadir pregunta
-									printf("Añadiendo pregunta...\n");
+									Question pregunta;
+                                    Connector fichero_preguntas;
+                                    Questions *preguntas;
+                                    printf("Introduceme la pregunta a insertar\n");
+                                    fgets(pregunta.question,255,stdin);        
+                                    printf("Introduceme la categoria de la pregunta\n");
+                                    fgets(auxiliar,100,stdin);   
+                                    sscanf(auxiliar,"%d",&pregunta.category);   
+                                    printf("Introduceme la respuesta correcta\n");
+                                    fgets(pregunta.valid,64,stdin);          
+                                    printf("Introduceme una respuesta incorrecta\n");
+                                    fgets(pregunta.invalid1,64,stdin);            
+                                    printf("Introduceme una respuesta incorrecta\n");
+                                    fgets(pregunta.invalid2,64,stdin);          
+                                    printf("Introduceme una respuesta incorrecta\n");
+                                    fgets(pregunta.invalid3,64,stdin);
+                                    sprintf(fichero_preguntas.questionsFilename,"data/questions.db");
+                                    preguntas = Questions_init();
+                                    Questions_load(&fichero_preguntas, preguntas);
+                                    Questions_add(&fichero_preguntas,&preguntas, &pregunta);
 									break;
 							case 2: // Llamar a función para listar categorías
 									printf("Listando categorías disponibles...\n");

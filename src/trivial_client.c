@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
   char enviaopcion[4] = {0,0,0,0}; 
   char buffer[50];
   char registro;
+  char id[30],pass[30],buf[60];
+  int resp=1;
 
   /* Comprobar que los parámetros son correctos */
   if (argc!=3){
@@ -28,6 +30,16 @@ int main(int argc, char *argv[]) {
   Socket_escribir(sock,enviaopcion);
   
   if (opcion == '1') {
+    int aux25=3;
+    printf("Introduceme tu nombre de usuario\n");
+    scanf("%s",id);
+    printf("Introduceme tu contrasena de usuario\n");
+    scanf("%s",pass);
+    sprintf(buf,"P AUTH %s %s\n",id,pass);
+    Socket_escribir(sock,buf);
+    resp=Socket_leer(sock);
+    aux23=atoi(resp);
+    if(aux23==0) exit(-1);
   }
   else if (opcion == '2') { // Ha seleccionado la opcion de registrarse como nuevo usuario del trivial
     char envio[50];
